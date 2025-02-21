@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="th" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Form ! :D</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        small {
+            font-size: 10px;
+        }
+
+        body {
+            background-color: black;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+        }
+
+        .information_box {
+            font-size: 2vh;
+            background-color: white;
+            padding: 20px;
+            width: auto;
+            height: auto;
+            border-radius: 10px;
+            padding-bottom: 0;
+        }
+
+        .form-control {
+            height: 4vh;
+            font-size: smaller;
+            padding: 0.375rem 0.75rem;
+            line-height: 1.5;
+            border: rgb(219, 219, 219) solid 2px;
+            border-radius: 7px;
+        }
+
+        form {
+            margin-top: 35px;
+        }
+
+        .info_div {
+            margin-bottom: 10px;
+        }
+
+        #userid {
+            width: 30%;
+        }
+
+        .title_drop_box label {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        #name_title_drop {
+            width: 100%;
+        }
+
+        .username {
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid rgb(193, 193, 193);
+            padding-bottom: 15px;
+        }
+
+        #fname_input {
+            width: 100%;
+        }
+
+        .address_block {
+            margin-top: 10px;
+        }
+
+        button.btn-custom {
+            background-color: #fa105e; /* Custom blue color */
+            color: white;
+            border-radius: 20px;
+            width: 100px;
+            border: none; /* Optional, to remove border */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="information_box text-black">
+        <h2 style="color: rgb(93, 1, 213); font-weight: bold;"> 
+            <img style="width:30px; margin-bottom: 5px;" src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Six-petals_b_w_flower_icon.svg" alt="flower icon">
+            Information
+        </h2>
+        <form style="margin: 20px;">
+            <div class="info_div" id="userid">
+                <label for="userid_input">เลขบัตรประชาชน</label>
+                <input type="text" class="form-control" id="userid_input" name="id" maxlength="13" pattern="\d* \d{13}" required>
+                <!-- <small class="form-text text-muted">กรุณากรอกเลขบัตรประชาชน 13 หลัก</small> -->
+            </div>
+
+            <!-- user's name block including o -->
+            <div class="username">
+                <!-- name title block -->
+                <div class="info_div">
+                    <div class="title_drop_box">
+                        <label for="name_title_drop">คำนำหน้านาม</label>
+                        <select class="custom-select form-control" id="name_title_drop">
+                            <option selected>เลือก...</option>
+                            <option>นาย</option>
+                            <option>นาง</option>
+                            <option>นางสาว</option>
+                            <option>เด็กชาย</option>
+                            <option>เด็กหญิง</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- firstname block -->
+                <div class="fname_box">
+                    <label for="fname_input">ชื่อ</label>
+                    <input type="text" class="form-control" id="fname_input" minlength="2" maxlength="20">
+                </div>
+
+                <!-- lname block -->
+                <div class="fname_box">
+                    <label for="lname_input">นามสกุล</label>
+                    <input type="text" class="form-control" id="lname_input" minlength="2" maxlength="30">
+                </div>
+            </div>
+
+            <!-- Whole Address block -->
+            <div class="address" style="margin-top: 10px;">
+                <div class="address_block1" style="display: flex; gap: 10px;">
+                    <div class="address_block" id="address_number">
+                        <label for="address_input">ที่อยู่</label>
+                        <input type="text" id="address_input" class="form-control" minlength="15">
+                    </div>
+                    <div class="address_block" id="address_number">
+                        <label for="tambon">ตำบล / แขวง</label>
+                        <input type="text" id="tambon" class="form-control" minlength="2" pattern="[A-Za-z]+">
+                    </div>
+                </div>
+
+                <div class="address_block" id="address_block2" style="display: flex; gap: 10px;">
+                    <div>
+                        <label for="amphoe">อำเภอ / เขต</label>
+                        <input type="text" id="amphoe" class="form-control" pattern="[A-Za-z]+" minlength="2">
+                    </div>
+                    <div>
+                        <label for="province">จังหวัด</label>
+                        <select name="" id="province" class="form-control" style="width: 100%;">
+                            <option>Loading...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 10px; width: 30%;">
+                <label for="lname_input">รหัสไปรษณีย์</label>
+                <input class="form-control" type="text" maxlength="5" pattern="\d* \d{13}">
+            </div>
+
+            <div style="text-align: center;">
+                <button type="submit" class="btn btn-custom" style="margin-top: 30px;">บันทึก</button>
+            </div>
+        </form>
+        <script>
+            // Fetch the provinces from the text file
+            fetch('provinces.txt')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('province').innerHTML = data; // Set dropdown options
+                });
+        </script>
+    </div>
+</body>
+
+</html>

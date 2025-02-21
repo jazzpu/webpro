@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee table</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        .table {
+            width: 50%;
+        }
+        #div1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <table id="table" class="table table-striped">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>Gender</td>
+                    <td>Position</td>
+                    <td>Address</td>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- insert rows here -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function show(data) {
+            const tableBody = document.getElementById('tableBody');
+            for (let employee of data){
+                const row = '<tr>'+
+                    '<td>'+employee.id+'</td>'+
+                    '<td>'+employee.FirstName+' '+employee.LastName+'</td>'+
+                    '<td>'+employee.Gender+'</td>'+
+                    '<td>'+employee.Position+'</td>'+
+                    '<td>'+employee.Address+'</td>'+
+                    '</tr>'
+                    ;
+                    document.getElementById('tableBody').innerHTML+=row;
+            }
+        }
+
+        fetch('employees.json')
+            .then(Response => Response.json())
+            .then(data => show(data))
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>

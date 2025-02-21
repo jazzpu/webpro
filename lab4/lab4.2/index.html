@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Switch Form</title>
+</head>
+<body>
+  <form id="languageForm">
+    <label id="firstNameLabel" for="firstName">First Name:</label>
+    <input type="text" id="firstName"><br><br>
+    
+    <label id="lastNameLabel" for="lastName">Last Name:</label>
+    <input type="text" id="lastName"><br><br>
+    
+    <label id="countryLabel" for="country">Country:</label>
+    <select id="country">
+      <option value="select">Select a country</option>
+      <option value="th">Thailand</option>
+      <option value="la">Laos</option>
+      <option value="vn">Vietnam</option>
+      <option value="mm">Myanmar</option>
+      <option value="kh">Cambodia</option>
+    </select><br><br>
+    
+    <button type="button" id="changeLanguageBtn">Change to Thai</button>
+  </form>
+
+  <script>
+    const changeLanguageBtn = document.getElementById('changeLanguageBtn');
+
+    // English and Thai translations
+    const translations = {
+      en: {
+        firstName: "First Name:",
+        lastName: "Last Name:",
+        country: "Country:",
+        selectCountry: "Select a country",
+        countries: ["Thailand", "Laos", "Vietnam", "Myanmar", "Cambodia"],
+        button: "Change to Thai"
+      },
+      th: {
+        firstName: "ชื่อ:",
+        lastName: "นามสกุล:",
+        country: "ประเทศ:",
+        selectCountry: "เลือกประเทศ",
+        countries: ["ไทย", "ลาว", "เวียดนาม", "เมียนมา", "กัมพูชา"],
+        button: "เปลี่ยนเป็นภาษาอังกฤษ"
+      }
+    };
+
+    // Current language state
+    let currentLanguage = 'en';
+
+    changeLanguageBtn.addEventListener('click', () => {
+      // Toggle language
+      currentLanguage = currentLanguage === 'en' ? 'th' : 'en';
+
+      // Update labels
+      document.getElementById('firstNameLabel').textContent = translations[currentLanguage].firstName;
+      document.getElementById('lastNameLabel').textContent = translations[currentLanguage].lastName;
+      document.getElementById('countryLabel').textContent = translations[currentLanguage].country;
+
+      // Update dropdown options
+      const countrySelect = document.getElementById('country');
+      countrySelect.options[0].textContent = translations[currentLanguage].selectCountry;
+
+      translations[currentLanguage].countries.forEach((country, index) => {
+        countrySelect.options[index + 1].textContent = country;
+      });
+
+      // Update button text
+      changeLanguageBtn.textContent = translations[currentLanguage].button;
+    });
+  </script>
+</body>
+</html>

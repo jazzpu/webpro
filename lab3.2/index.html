@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สุ่มตัวเลข</title>
+    <style>
+        #numbers {
+            display: flex;
+            gap: 5px;
+        }
+        img {
+            width: 30px;
+            height: 30px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>สุ่มตัวเลข</h1>
+    <div id="numbers">
+        <img src="http://10.0.15.21/lab/lab3/images/0.png">
+        <img src="http://10.0.15.21/lab/lab3/images/0.png">
+        <img src="http://10.0.15.21/lab/lab3/images/0.png">
+        <img src="http://10.0.15.21/lab/lab3/images/0.png">
+        <img src="http://10.0.15.21/lab/lab3/images/0.png">
+        <img src="http://10.0.15.21/lab/lab3/images/0.png">
+    </div>
+    <button id="generate">สร้าง</button>
+
+    <script>
+        const numbersDiv = document.getElementById('numbers');
+        const generateButton = document.getElementById('generate');
+
+        function generateRandomNumbers() {
+            // ลบตัวเลขเดิมออก
+            numbersDiv.innerHTML = '';
+            for (let i = 0; i < 6; i++) {
+                const randomNumber = Math.floor(Math.random() * 10); // สุ่มเลข 0-9
+                const img = document.createElement('img');
+                img.src = `http://10.0.15.21/lab/lab3/images/${randomNumber}.png`;
+                img.alt = `ตัวเลข ${randomNumber}`;
+                img.style.width = '30px';
+                img.style.height = '30px';
+                numbersDiv.appendChild(img);
+            }
+        }
+
+        generateButton.addEventListener('click', generateRandomNumbers);
+    </script>
+</body>
+</html>

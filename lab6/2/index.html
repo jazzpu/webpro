@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #container {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: repeat(4, auto);
+            grid-template-rows: repeat(2, auto);
+            /* 2 rows, each 150px tall */
+            gap: 20px;
+        }
+        @media (max-width: 600px) {
+            #container {
+                grid-template-columns: repeat(2, auto);
+                grid-template-rows: repeat(4, auto);
+            }
+        }
+        @media (max-width: 400px) {
+            #container {
+                grid-template-columns: repeat(1, auto);
+                grid-template-rows: repeat(8, auto);
+            }
+            
+        }
+
+        h1{
+            padding-bottom: 20px;
+            color: beige;
+        }
+        body {
+            text-align: center;
+            padding: 30px;
+            background-color: rgb(89, 60, 20);
+        }
+
+
+        img {
+
+            height: 50vh;
+            width: 30vh;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .box {
+            padding: 15px;
+            background-color: rgb(183, 152, 106);
+            text-align: center;
+            border-radius: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <h1>My cake gallery</h1>
+        <div id="container">
+            <!-- insert image and image's descripttion by javascript -->
+        </div>
+    </div>
+
+    <script>
+        function show(data) {
+            let count = 0;
+            for (let cake of data) {
+                document.getElementById('container').innerHTML += '<div class="box"> <img src="cake' + (count + 1) + '.jpg"> <p>' + cake.name + '</p> </div>';
+                count++;
+            }
+        }
+
+        fetch('names.json')
+            .then(response => response.json()
+                .then(data => {
+                    show(data);
+                })
+            );
+    </script>
+</body>
+
+</html>
