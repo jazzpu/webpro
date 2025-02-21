@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+
+    }
+
+    th,
+    td {
+        border-bottom: 1px solid;
+        padding: 8px;
+        text-align: left;
+    }
+</style>
+
+<body>
+    <h1>User List</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>LastName</td>
+                <td>FirstName</td>
+                <td>Title</td>
+                <td>Phone</td>
+                <td>Email</td>
+                <td></td>
+            </tr>
+        </thead>
+        <% data.forEach((item)=>{ %>
+            <tr>
+                <td>
+                    <%=item.id%>
+                </td>
+                <td>
+                    <%=item.first_name%>
+                </td>
+                <td>
+                    <%=item.last_name%>
+                </td>
+                <td>
+                    <%=item.username%>
+                </td>
+                <td>
+                    <%=item.email%>
+                </td>
+                <td><a href="/detail/?id=<%=item.id%>">detail</a></td>
+            </tr>
+            <% }); %>
+
+    </table>
+</body>
+
+</html>

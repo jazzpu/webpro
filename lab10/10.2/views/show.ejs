@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        Questions
+    </h1>
+    <br>
+    <form action="/submit-quiz" method="POST">
+        <% data.forEach((item) => { %>
+            <div>
+                <strong><%= item.QID %>. <%= item.Stem %></strong>
+            </div>
+            <div>
+                <input type="radio" name="q<%= item.QID %>" value="<%= item.Alt_A %>"> <%= item.Alt_A %><br>
+                <input type="radio" name="q<%= item.QID %>" value="<%= item.Alt_B %>"> <%= item.Alt_B %><br>
+                <input type="radio" name="q<%= item.QID %>" value="<%= item.Alt_C %>"> <%= item.Alt_C %><br>
+                <input type="radio" name="q<%= item.QID %>" value="<%= item.Alt_D %>"> <%= item.Alt_D %><br>
+            </div>
+            <br>
+        <% }); %>
+        
+        <button type="submit" class="btn btn-primary">Submit Quiz</button>
+    </form>
+</body>
+</html>
