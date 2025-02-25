@@ -1,0 +1,28 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
+
+# Environment files (Secrets & API keys)
+.env
+
+# Logs
+logs/
+*.log
+debug.log
+
+# Databases
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+countries.json
+
+# Compiled files
+dist/
+build/
+coverage/
+
+# OS-specific files
+.DS_
