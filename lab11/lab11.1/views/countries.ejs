@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>countries</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        html {
+            display: flex;
+            justify-content: center;
+        }
+        body {
+            padding: 5px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            width: 50%;
+        }
+        #container {
+            background-color: beige;
+            border-radius: 10px;
+        }
+        img {
+            height: 10vh;
+        }
+    </style>
+</head>
+<body>
+    <% countries.forEach((item) => { %>
+    <div id="container" class="shadow p-4 mb-4 bg-white h-10%">
+            
+                <img src="http://10.0.15.21:8000<%= item.flag %>" alt="<%= item.name%>'s flag"><br>
+                <br><strong><%= item.name%></strong><br>
+                Capital: <%= item.capital%> <br>
+                Region: <%= item.region%> <br>
+                Population: <%= item.population%> <br>
+                Area: <%= item.area%> <br>
+                CIOC: <%= item.cioc%>
+
+            </div>
+    <%});%>
+</body>
+</html>
