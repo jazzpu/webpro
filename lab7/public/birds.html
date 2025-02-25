@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Birds Gallery</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 1em;
+    text-decoration: none;
+}
+
+main {
+    padding: 2em;
+    text-align: center;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.gallery img {
+    width: 200px;
+    height: auto;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/home">Home</a>
+            <a href="/cats">Cats</a>
+            <a href="/dogs">Dogs</a>
+            <a href="/birds" style="background-color: green; padding: 10px;">Birds</a>
+            <a href="/about">About</a>
+        </nav>
+    </header>
+    <main>
+        <h1>My Cats Gallery</h1>
+        <div class="gallery">
+            <img src="https://media.istockphoto.com/id/1171061315/photo/free-range-chicken-in-flower-garden.jpg?s=612x612&w=0&k=20&c=MvtSUEgd0qs9xNoNvPhckLE8EeG5l5utMupxGuxHyok=" alt="Bird 1">
+            <img src="https://i.pinimg.com/736x/27/05/7f/27057f9b81f0a434a5a9812464dbfa43.jpg" alt="Bird 2">
+        </div>
+        <p><a href="/home">Go back to Home</a></p>
+    </main>
+</body>
+</html>

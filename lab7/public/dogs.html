@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cats Gallery</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 1em;
+    text-decoration: none;
+}
+
+main {
+    padding: 2em;
+    text-align: center;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.gallery img {
+    width: 200px;
+    height: auto;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/home">Home</a>
+            <a href="/cats">Cats</a>
+            <a href="/dogs" style="background-color: green; padding: 10px;">Dogs</a>
+            <a href="/birds">Birds</a>
+            <a href="/about">About</a>
+        </nav>
+    </header>
+    <main>
+        <h1>My Cats Gallery</h1>
+        <div class="gallery">
+            <img src="https://b1157417.smushcdn.com/1157417/wp-content/uploads/2023/06/happy-samoyed-dog-outdoors-in-summer-field-825x550.jpg?lossy=1&strip=1&webp=0" alt="Dog 1">
+            <img src="https://www.wylanbriar.com/wp-content/uploads/2010/09/showline1.jpg" alt="Dog 2">
+        </div>
+        <p><a href="/">Go back to Home</a></p>
+    </main>
+</body>
+</html>
