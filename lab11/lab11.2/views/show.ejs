@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To-Do List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="container mt-4">
+
+    <h3>To-Do List 📝</h3>
+    <button class="btn btn-primary" onclick="openForm()">Add To-Do</button>
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Deadline</th>
+                <th>Completed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% todos.forEach(todo => { %>
+                <tr>
+                    <td><%= todo.id %></td>
+                    <td><%= todo.title %></td>
+                    <td><%= todo.deadline %></td>
+                    <td><%= todo.completed ? "✅" : "❌" %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <!-- Pop-up Form -->
+    <div id="todoForm" style="display: none; background: #fff; padding: 20px; border: 1px solid #ccc; position: absolute; top: 50px; left: 50px;">
+        <h4>Add To-Do</h4>
+        <input id="title" class="form-control" type="text" placeholder="Title" required><br>
+        <input id="deadline" class="form-control" type="date" required><br>
+        <button class="btn btn-success" onclick="addTodo()">Save</button>
+        <button class="btn btn-secondary" onclick="closeForm()">Cancel</button>
+    </div>
+
+    <script>
+        function openForm() { document.getElementById("todoForm").style.display = "block"; }
+        function closeForm() { document.getElementById("todoForm").style.display = "none"; }
+
+        function addTodo() {
+            const title = document.getElementById("title").value;
+            const deadline = document.getElementById("deadline").value;
+
+            fetch("/add-todo", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ title, deadline })
+            })
+            .then(response => response.json())
+            .then(() => { closeForm(); location.reload(); }) // Reload page to update the list
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+
+</body>
+</html>
