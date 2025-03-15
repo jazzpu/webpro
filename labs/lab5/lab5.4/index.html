@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://10.0.15.21/lab/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://10.0.15.21/lab/bootstrap/css/bootstrap.min.css">
+    <style>
+        html{
+            text-align: center;
+            height: 100%;
+            align-content: center;
+        }
+        .btn {
+            width: 70px;
+            margin: 20px;
+        }
+        select, input{
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="name" placeholder="name">
+        <select id="province">
+            <!-- add options -->
+        </select>
+        <div id="buttons">
+            <button id="load" class="btn btn-warning">load</button>
+            <button id="save" class="btn btn-primary">save</button>
+            <button id="clear" class="btn btn-danger">clear</button>
+        </div>
+    </div>
+    <script>
+
+        let load = document.getElementById('load');
+        let save = document.getElementById('save');
+        let clear = document.getElementById('clear');
+
+        load.addEventListener('click', handler);
+        save.addEventListener('click', handler);
+        clear.addEventListener('click', handler);
+
+        function handler(e) {
+            if (e.target.id === "load"){
+                let n_data = localStorage.getItem("name"[0]);
+                let p_data = localStorage.getItem("province"[0]);
+                document.getElementById("name").value = n_data;
+                document.getElementById("province").value =p_data;
+
+                alert("loaded successfuly;");
+                
+            } else if (e.target.id === "save") {
+                let n_data = document.getElementById("name").value;
+                let p_data = document.getElementById("province").value;
+                localStorage.setItem("name"[0], n_data);
+                localStorage.setItem("province"[0], p_data);
+                alert("saved!");
+            } else if (e.target.id === "clear") {
+                localStorage.clear();
+                alert("cleared history!")
+            }
+        }
+
+        let select = document.getElementById('province');
+        function show(data){
+            for (let province of data){
+                    let opt = document.createElement('option');
+                    opt.innerHTML = province.text;
+                    select.appendChild(opt);
+            }
+        }
+        fetch('provinces.json')
+            .then(Response=>Response.json())
+            .then(data=>show(data))
+    </script>
+</body>
+</html>

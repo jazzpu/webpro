@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://10.0.15.21/lab/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://10.0.15.21/lab/bootstrap/css/bootstrap.min.css">
+    <style>
+        html {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            height: 100%;
+        }
+
+        body {
+            margin-top: 20px;
+        }
+
+        th {
+            border: white solid 1px;
+            background-color: rgb(132, 205, 132);
+        }
+        td {
+            border: white solid 1px;
+        }
+
+        table {
+            width: 100%;
+            background-color: beige;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Money Manager</h1>
+    <h3>Balance</h3>
+    <h2 id="balancet">- $</h2>
+    <div style="display: flex; gap: 20px; height: 35px;">
+        <input type="text" placeholder="รายการ" id="list">
+        <input type="number" placeholder="money" id="amount">
+        <select name="" id="select">
+            <!-- input options -->
+            <option value="">choose</option>
+        </select>
+        <input type="date" id="date">
+        <button class="btn btn-success" id="add">Add list</button>
+    </div>
+    <br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>list</th>
+                <th>amount</th>
+                <th>choose</th>
+                <th>date</th>
+            </tr>
+        </thead>
+        <tbody id="body">
+            <!-- insert tr -->
+        </tbody>
+    </table>
+    <script>
+        let balance = 0;
+        function show(data) {
+            let select = document.getElementById("select");
+            for (let opt of data) {
+                let option = document.createElement("option");
+                option.innerHTML = opt;
+                select.appendChild(option);
+            }
+        }
+        fetch('option.json')
+            .then(Response => Response.json())
+            .then(data => show(data))
+
+        let button = document.getElementById("add");
+        button.addEventListener('click', handler);
+
+        let tbody = document.getElementById("body");
+
+        function handler(e) {
+            if (e.target.id === "add"){
+                let row = document.createElement("tr");
+                let list = document.getElementById('list').value;
+                let amount = parseInt(document.getElementById("amount").value);
+                let transaction = document.getElementById("select").value;
+                let date = document.getElementById("date").value;
+                if (transaction === "income"){
+                    balance += amount;
+                } else {
+                    balance -= amount;
+                    if (balance < 0) {
+                        alert("Your balance is negative!");
+                        balance = 0;
+                    }
+                }
+                document.getElementById("balancet").innerHTML = balance +"$";
+                row.innerHTML = "<td>" + list + "</td>" +
+                    "<td>" + amount + "</td>" +
+                    "<td>" + transaction + "</td>" +
+                    "<td>" + date + "</td>";
+                tbody.appendChild(row);
+            }
+        };
+    </script>
+
+</body>
+
+</html>
